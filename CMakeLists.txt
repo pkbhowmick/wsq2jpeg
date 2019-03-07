@@ -38,11 +38,11 @@ install(TARGETS wsq2jpeg
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-add_executable(wsq2jpeg_test src/test_wsq.cpp)
-target_include_directories(wsq2jpeg_test PRIVATE include)
+add_executable(test_wsq src/test_wsq.cpp)
+target_include_directories(test_wsq PRIVATE include)
 
-add_executable(jpeg2wsq_test src/test_jpeg.cpp)
-target_include_directories(jpeg2wsq_test PRIVATE include)
+add_executable(test_jpeg src/test_jpeg.cpp)
+target_include_directories(test_jpeg PRIVATE include)
 
 target_link_libraries(wsq2jpeg
     m
@@ -59,6 +59,6 @@ target_link_libraries(wsq2jpeg
     libwsq.a
     libz.a)
 
-target_link_libraries(wsq2jpeg_test wsq2jpeg)
-target_link_libraries(jpeg2wsq_test wsq2jpeg)
+target_link_libraries(test_wsq wsq2jpeg)
+target_link_libraries(test_jpeg wsq2jpeg)
 
