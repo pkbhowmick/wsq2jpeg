@@ -26,16 +26,16 @@ Is a library to convert wsq images to jpeg format and vice versa. Allows individ
  $ [sudo] make install
  ```
  ## Run examples
-### WSQ to jpeg
+### WSQ to JPEG
 ```sh
  $ ./test_wsq ../test ../test 80
  ```
- ### jpeg to wsq 5:1
+ ### JPEG to WSQ 5:1
 ```sh
  $ ./test_jepg ../test ../test 2.25 
  ```
  
- ### jpeg to wsq 15:1
+ ### JPEG to WSQ 15:1
 ```sh
  $ ./test_jepg ../test ../test 0.75
  ```
