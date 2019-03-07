@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 2.8)
-project(wsq2jpeg)
+cmake_minimum_required(VERSION 3.9)
+project(wsq2jpeg VERSION 1.0.1 DESCRIPTION "wsq to jpg converter and vice versa")
+include(GNUInstallDirs)
 
 set(CMAKE_CXX_STANDARD 11)
 set(NBIS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/third_party/nbis)
@@ -13,8 +14,8 @@ set(INCLUDE_PATH
     ${NBIS_PATH}/exports/include)
 
 set(LOCAL_SRC
-    include/image.h
-    src/image.cpp
+    include/wsq2jpeg.h
+    src/wsq2jpeg.cpp
     include/utils.h
     src/utils.cpp)
 
@@ -28,11 +29,19 @@ set(NBIS_OBJS
     )
 
 add_library(wsq2jpeg SHARED ${LOCAL_SRC} ${NBIS_OBJS})
-add_executable(wsq2jpeg_test src/mainw.cpp)
-add_executable(jpeg2wsq_test src/mainj.cpp)
-
+set_target_properties(wsq2jpeg PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION 1
+    PUBLIC_HEADER include/wsq2jpeg.h)
 target_include_directories(wsq2jpeg PRIVATE ${INCLUDE_PATH})
+install(TARGETS wsq2jpeg
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+add_executable(wsq2jpeg_test src/test_wsq.cpp)
 target_include_directories(wsq2jpeg_test PRIVATE include)
+
+add_executable(jpeg2wsq_test src/test_jpeg.cpp)
 target_include_directories(jpeg2wsq_test PRIVATE include)
 
 target_link_libraries(wsq2jpeg

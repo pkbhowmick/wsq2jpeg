@@ -1,4 +1,4 @@
-#include <image.h>
+#include <wsq2jpeg.h>
 #include <iostream>
 
 static void progress() {
